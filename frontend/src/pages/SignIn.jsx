@@ -24,9 +24,11 @@ const Login = () => {
         navigate("/home");
       } else {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
       }
     } catch {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
     }
   }
 }, [token, navigate]);
