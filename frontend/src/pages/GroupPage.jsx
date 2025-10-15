@@ -12,7 +12,8 @@ export default function GroupPage() {
 
   useEffect(() => {
     const loadData = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
+      const userStr = localStorage.getItem("user");
+      const user = userStr ? JSON.parse(userStr) : null;
       try {
         const [groupsRes, summaryRes] = await Promise.all([
           getGroups(user?._id),

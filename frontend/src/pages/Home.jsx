@@ -8,7 +8,8 @@ export default function Home() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   useEffect(() => { 
-    const user = JSON.parse(localStorage.getItem("user"));
+    const userStr = localStorage.getItem("user");
+    const user = userStr ? JSON.parse(userStr) : null;
     getGroups(user?._id)
       .then(res => {
         setGroups(Array.isArray(res.data) ? res.data : []);

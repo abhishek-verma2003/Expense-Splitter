@@ -32,10 +32,15 @@ export default function CreateGroup() {
 
     setLoading(true);
     try {
-      // Get user from localStorage
-      const user = JSON.parse(localStorage.getItem("user"));
-      // Send _id as creatorId (or any key your backend expects)
-      await createGroup({ name, members: selected, creatorId: user?._id });
+      // Get user from localStorage safely
+      const userStr = localStorage.getItem("user");
+      const user = userStr ? JSON.parse(userStr) : null;
+      if (!user || !user._id) {
+        alert("User not found. Please login again.");
+        setLoading(false);
+        return;
+      }
+      await createGroup({ name, members: selected, creatorId: user._id });
       alert("Group Created Successfully!");
       navigate("/");
     } catch (error) {
