@@ -12,7 +12,7 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(cors({
-  origin: "*", // your frontend URL
+  origin: ["*","https://expense-splitter-k3rd.vercel.app/"] , // your frontend URL
   credentials: true
 }));
 app.use(express.json());
